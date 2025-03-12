@@ -66,7 +66,7 @@ public class TicketController {
     public ResponseEntity<ApiResponse<Ticket>> saveTicket(@RequestBody TicketRequest request) {
         Ticket ticket = new Ticket(ATOMIC_LONG.getAndIncrement(), request.getPassengerName(), request.getTravelDate(), request.getSourceStation(), request.getDestinationStation(), request.getPrice(), request.getPaymentStatus(), request.getTicketStatus(), request.getSeatNumber());
         TICKETS.add(ticket);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.<Ticket>builder().success(true).message("Ticket has been saved").status(HttpStatus.OK).payload(ticket).timeStamp(LocalDateTime.now()).build());
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.<Ticket>builder().success(true).message("Ticket created successfully").status(HttpStatus.CREATED).payload(ticket).timeStamp(LocalDateTime.now()).build());
 
     }
 
