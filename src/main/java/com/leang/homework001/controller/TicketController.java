@@ -48,7 +48,7 @@ public class TicketController {
 
     @Operation(summary = "Bulk update payment status for multiple tickets")
     @PutMapping
-    public ResponseEntity<ApiResponse<List<Ticket>>> updatePaymentStatusBulk(@RequestBody UpdatePaymentStatusRequest request) {
+    public ResponseEntity<ApiResponse<List<Ticket>>> bulkUpdatePaymentStatus(@RequestBody UpdatePaymentStatusRequest request) {
         List<Ticket> tickets = new ArrayList<>();
         for (int ticketID : request.getTickedIds()) {
             for (Ticket ticket : TICKETS) {
@@ -130,7 +130,7 @@ public class TicketController {
 
     @Operation(summary = "Bulk create tickets")
     @PostMapping("bulk")
-    public ResponseEntity<?> removeTicketById(@RequestBody List<TicketRequest> tickets, WebRequest webRequest) {
+    public ResponseEntity<?> bulkCreateTickets(@RequestBody List<TicketRequest> tickets, WebRequest webRequest) {
         for (TicketRequest request : tickets) {
             ResponseEntity<?> problemDetail = unitPriceValidation(request, webRequest);
             if (problemDetail != null) return problemDetail;
